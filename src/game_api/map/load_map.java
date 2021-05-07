@@ -1,50 +1,76 @@
 package game_api.map;
 
+import game_api.game_settings.load_File;
 import game_api.game_start.start_game;
 
 import javax.swing.*;
+import java.util.Properties;
+
+import static game_api.player.player_data_load.play_log;
 
 public class load_map {
 
     public static void loading_map() {
-        // 프레임 생성
-        JFrame frm = new JFrame("play_game");
 
-        // 프레임 크기 설정
-        frm.setSize(350, 300);
+        Properties pro = new Properties();
 
-        // 프레임을 화면 가운데에 배치
-        frm.setLocationRelativeTo(null);
+        load_File.File_load("src/game_api/resources/map_data.properties");
+        play_log = Boolean.parseBoolean(pro.getProperty("play_log"));
 
-        // 프레임을 닫았을 때 메모리에서 제거되도록 설정
-        frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        if(play_log = false) {
+            pro.setProperty("play_log", "true");
 
-        // 레이아웃 설정
-        frm.getContentPane().setLayout(null);
+            // 프레임 생성
+            JFrame frm = new JFrame("play_game");
+            pro.setProperty("frm_name","play_game");
 
-        // 버튼 생성
-        JButton btn1 = new JButton("게임시작");
-        JButton btn2 = new JButton("게임종료");
+            // 프레임 크기 설정
+            frm.setSize(350, 300);
+            pro.setProperty("frm_size_x","350");
+            pro.setProperty("frm_size_y","300");
 
-        // ★ 버튼 위치와 크기 설정
-        btn1.setBounds(30, 170, 122, 30);
-        btn2.setBounds(182, 170, 122, 30);
+            // 프레임을 화면 가운데에 배치
+            frm.setLocationRelativeTo(null);
 
-        // ★ 프레임에다가 버튼 추가
-        frm.getContentPane().add(btn1);
-        frm.getContentPane().add(btn2);
+            // 프레임을 닫았을 때 메모리에서 제거되도록 설정
+            frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        btn1.addActionListener(event -> {
-            start_game.start_game();
-            frm.dispose();
-        });
+            // 레이아웃 설정
+            frm.getContentPane().setLayout(null);
 
-        btn2.addActionListener(event -> {
-            System.exit(1);
-        });
+            // 버튼 생성
+            JButton btn1 = new JButton("게임시작");
+            pro.setProperty("btn1","게임시작");
 
-        // 프레임이 보이도록 설정
-        frm.setVisible(true);
+            JButton btn2 = new JButton("게임종료");
+            pro.setProperty("btn2","게임종료");
+
+            //버튼 위치와 크기 설정
+            btn1.setBounds(30, 170, 122, 30);
+            pro.setProperty("btn1_size","30/170/122/30");
+            btn2.setBounds(182, 170, 122, 30);
+            pro.setProperty("btn2_size","182/170/122/30");
+
+            // 프레임에다가 버튼 추가
+            frm.getContentPane().add(btn1);
+            frm.getContentPane().add(btn2);
+
+            btn1.addActionListener(event -> {
+                start_game.start_game();
+                frm.dispose();
+            });
+
+            btn2.addActionListener(event -> {
+                System.exit(1);
+            });
+
+            // 프레임이 보이도록 설정
+            frm.setVisible(true);
+        }
+        else {
+
+        }
+
 
     }
 
