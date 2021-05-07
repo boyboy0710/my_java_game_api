@@ -2,6 +2,7 @@ package game_api.player;
 
 
 import game_api.game_settings.input_box;
+import game_api.map.load_map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,14 +15,14 @@ import java.util.Properties;
 import static game_api.game_settings.game_erorr.game_erorr;
 import static game_api.game_settings.input_box.inputbox;
 import static game_api.game_settings.load_File.File_load;
-import static game_api.player.player_data_load.player_name;
+import static game_api.player.player_data.player_name;
 
 public class first_play {
 
     public static void first_play() {
 
         Properties pro= new Properties();
-        File_load("src/game_api/resources/player_data.properties");
+        File_load();
 
         input_box.input_box("사용할 닉네임을 입력하세요");
         player_name = inputbox;
@@ -64,7 +65,7 @@ public class first_play {
         frm.getContentPane().add(btn2);
 
         btn1.addActionListener(event -> {
-
+            load_map.loading_map();
         });
 
         btn2.addActionListener(event -> {

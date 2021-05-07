@@ -4,19 +4,16 @@ import game_api.game_settings.load_File;
 
 import java.util.Properties;
 
+import static game_api.player.player_data.player_name;
 
 public class player_data_load {
-
-    static String player_name;
-    public static boolean play_log;
 
     public static void player_data_load() {
 
         Properties pro= new Properties();
-        load_File.File_load("src/game_api/resources/player_data.properties");
+        load_File.File_load();
 
         player_name = pro.getProperty("player_name");
-
 
     }
 
